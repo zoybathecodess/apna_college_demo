@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Git Command Cheat Sheet</title>
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--text:#e6eef7}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Roboto,"Segoe UI",Helvetica,Arial;background:linear-gradient(180deg,#071024 0%, #091426 100%);color:var(--text)}
+    .wrap{max-width:1100px;margin:32px auto;padding:28px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+    header{display:flex;align-items:center;gap:16px}
+    h1{margin:0;font-size:22px}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+    table{width:100%;border-collapse:collapse}
+    th{font-weight:600;text-align:left;padding:8px 6px;color:var(--accent)}
+    td{padding:8px 6px;border-top:1px solid rgba(255,255,255,0.02);vertical-align:top;color:#dbe9f6}
+    code.cmd{display:inline-block;padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.02);font-family:monospace;font-size:13px}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    .copy-row{display:flex;gap:8px;align-items:center}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Git Command Cheat Sheet</h1>
+        <p class="lead">Concise list of common Git commands grouped by category. Copy & paste the commands as needed.</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h3>Basic setup</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git config --global user.name "your_name"</code></td><td>Set global username</td></tr>
+          <tr><td><code class="cmd">git config --global user.email "your_email"</code></td><td>Set global email</td></tr>
+          <tr><td><code class="cmd">git config --list</code></td><td>Show current git config</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Repository setup</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git init</code></td><td>Initialize a new Git repository</td></tr>
+          <tr><td><code class="cmd">git clone "url"</code></td><td>Clone remote repository</td></tr>
+          <tr><td><code class="cmd">git remote add origin "url"</code></td><td>Add remote repository</td></tr>
+          <tr><td><code class="cmd">git remote -v</code></td><td>Show remotes and their URLs</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>File management</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git status</code></td><td>Show working tree status</td></tr>
+          <tr><td><code class="cmd">git add .</code></td><td>Add all changes to staging area</td></tr>
+          <tr><td><code class="cmd">git add filename</code></td><td>Add a specific file to staging</td></tr>
+          <tr><td><code class="cmd">git commit -m "message"</code></td><td>Create a commit with message</td></tr>
+          <tr><td><code class="cmd">git commit -am "message"</code></td><td>Add & commit tracked files (shortcut)</td></tr>
+          <tr><td><code class="cmd">git rm "file_name"</code></td><td>Remove file from working dir & staging</td></tr>
+          <tr><td><code class="cmd">git rm --cached "file_name"</code></td><td>Remove file from staging only (keep locally)</td></tr>
+          <tr><td><code class="cmd">git mv "old" "new"</code></td><td>Rename or move a file</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Branching & merging</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git branch</code></td><td>List branches</td></tr>
+          <tr><td><code class="cmd">git branch branch_name</code></td><td>Create a new branch</td></tr>
+          <tr><td><code class="cmd">git checkout branch_name</code></td><td>Switch to a branch</td></tr>
+          <tr><td><code class="cmd">git checkout -b branch_name</code></td><td>Create & switch to a new branch</td></tr>
+          <tr><td><code class="cmd">git merge branch_name</code></td><td>Merge branch into current</td></tr>
+          <tr><td><code class="cmd">git rebase branch_name</code></td><td>Reapply commits on top of another branch</td></tr>
+          <tr><td><code class="cmd">git cherry-pick commit_id</code></td><td>Apply a specific commit from another branch</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Undo & reset</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git reset file_name</code></td><td>Unstage a file (keeps local edits)</td></tr>
+          <tr><td><code class="cmd">git reset --hard commit_id</code></td><td>Reset working tree & index to a specific commit (destructive)</td></tr>
+          <tr><td><code class="cmd">git checkout -- file_name</code></td><td>Discard local changes in a file</td></tr>
+          <tr><td><code class="cmd">git revert commit_id</code></td><td>Undo a commit by creating a new commit</td></tr>
+          <tr><td><code class="cmd">git clean -fd</code></td><td>Remove untracked files and directories</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Stash</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git stash</code></td><td>Save local changes temporarily</td></tr>
+          <tr><td><code class="cmd">git stash list</code></td><td>List stashed changes</td></tr>
+          <tr><td><code class="cmd">git stash pop</code></td><td>Apply last stash and remove it from the stash list</td></tr>
+          <tr><td><code class="cmd">git stash apply stash@{n}</code></td><td>Apply a specific stash (keep it in list)</td></tr>
+          <tr><td><code class="cmd">git stash drop stash@{n}</code></td><td>Delete a specific stash</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Remote operations</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git push -u origin main</code></td><td>Push to remote and set upstream</td></tr>
+          <tr><td><code class="cmd">git push</code></td><td>Push commits to remote</td></tr>
+          <tr><td><code class="cmd">git push origin branch_name</code></td><td>Push a specific branch</td></tr>
+          <tr><td><code class="cmd">git pull origin main</code></td><td>Fetch & merge from remote branch</td></tr>
+          <tr><td><code class="cmd">git fetch</code></td><td>Fetch remote changes without merging</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Logs & history</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git log</code></td><td>Show commit history</td></tr>
+          <tr><td><code class="cmd">git log --oneline</code></td><td>Compact history (one commit per line)</td></tr>
+          <tr><td><code class="cmd">git log --graph --oneline --all</code></td><td>Visualize branches and commits</td></tr>
+          <tr><td><code class="cmd">git diff</code></td><td>Show unstaged changes</td></tr>
+          <tr><td><code class="cmd">git diff --staged</code></td><td>Show staged changes</td></tr>
+          <tr><td><code class="cmd">git blame file_name</code></td><td>Show who changed each line</td></tr>
+          <tr><td><code class="cmd">git shortlog</code></td><td>Summary of commits by author</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Tags & releases</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git tag</code></td><td>List tags</td></tr>
+          <tr><td><code class="cmd">git tag tag_name</code></td><td>Create lightweight tag</td></tr>
+          <tr><td><code class="cmd">git tag -a v1.0 -m "message"</code></td><td>Create annotated tag</td></tr>
+          <tr><td><code class="cmd">git show tag_name</code></td><td>Show tag details</td></tr>
+          <tr><td><code class="cmd">git push origin tag_name</code></td><td>Push a tag</td></tr>
+          <tr><td><code class="cmd">git push origin --tags</code></td><td>Push all tags</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Archiving & export</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git archive -o archive.zip HEAD</code></td><td>Create a zip archive of the current branch</td></tr>
+          <tr><td><code class="cmd">git bundle create repo.bundle --all</code></td><td>Create a portable repository bundle</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Advanced</h3>
+        <table>
+          <tr><th>Command</th><th>Description</th></tr>
+          <tr><td><code class="cmd">git reflog</code></td><td>View reference log of HEAD (all movements)</td></tr>
+          <tr><td><code class="cmd">git bisect start</code></td><td>Start binary search to find a bad commit</td></tr>
+          <tr><td><code class="cmd">git bisect good commit_id</code></td><td>Mark a commit as good during bisect</td></tr>
+          <tr><td><code class="cmd">git bisect bad commit_id</code></td><td>Mark a commit as bad during bisect</td></tr>
+          <tr><td><code class="cmd">git bisect reset</code></td><td>End bisect and return to normal</td></tr>
+          <tr><td><code class="cmd">git submodule add url path</code></td><td>Add a submodule</td></tr>
+          <tr><td><code class="cmd">git submodule update --init --recursive</code></td><td>Init & update submodules recursively</td></tr>
+        </table>
+      </section>
+
+    </div>
+
+    <footer>
+      <div class="small">Tip: Click any command to select it for quick copy/paste.</div>
+    </footer>
+  </div>
+
+  <script>
+    // make commands selectable when clicked
+    document.querySelectorAll('code.cmd').forEach(el=>{
+      el.addEventListener('click',()=>{
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      });
+    });
+  </script>
+</body>
+</html>
